@@ -1,3 +1,6 @@
 # Python environment
 venv/
 .venv/
+
+# Ignore the quantum measurement data generated in Task 3
+data/
