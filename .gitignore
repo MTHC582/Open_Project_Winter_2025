@@ -2,6 +2,8 @@
 venv/
 .venv/
 
+*__pycache__
+
 # Ignore the quantum measurement data generated in Task 3
 Assignment_1/data/
 Assignment_2/data/

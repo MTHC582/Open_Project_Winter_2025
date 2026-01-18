@@ -44,7 +44,7 @@ def get_pauli_measurements(rho):
     return np.array([exp_x, exp_y, exp_z], dtype=np.float32)
 
 
-def generate_dataset(num_samples=5000, save_path="Assignment_2/data"):
+def generate_dataset(num_samples=5000, save_path="data"):
     """
     Main loop to create and save the dataset.
     """
@@ -75,6 +75,6 @@ def generate_dataset(num_samples=5000, save_path="Assignment_2/data"):
 if __name__ == "__main__":
     # Ensure the directory exists
 
-    os.makedirs("Assignment_2/data", exist_ok=True)
+    os.makedirs("data", exist_ok=True)
 
     generate_dataset()

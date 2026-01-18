@@ -89,3 +89,37 @@ def compute_fidelity(rho_pred, rho_true):
         fidelities.append(f)
 
     return np.mean(fidelities)
+
+
+def compute_trace_distance(rho_pred, rho_true):
+    """
+    Computes the Trace Distance between two density matrices.
+    T(rho, sigma) = 0.5 * Tr|rho - sigma|
+
+    Args:
+        rho_pred (torch.Tensor or np.ndarray): Predicted states
+        rho_true (torch.Tensor or np.ndarray): Ground truth states
+
+    Returns:
+        float: Mean Trace Distance across the batch (0.0 = perfect match, 1.0 = max error)
+    """
+    if isinstance(rho_pred, torch.Tensor):
+        rho_pred = rho_pred.detach().cpu().numpy()
+    if isinstance(rho_true, torch.Tensor):
+        rho_true = rho_true.detach().cpu().numpy()
+
+    distances = []
+
+    for i in range(len(rho_pred)):
+        # Calculate Difference Matrix
+        diff = rho_pred[i] - rho_true[i]
+
+        # Calculate Eigenvalues of the Hermitian difference matrix
+        # For Hermitian matrices, Singular Values = Abs(Eigenvalues)
+        eigvals = np.linalg.eigvalsh(diff)
+
+        # Trace Distance = 0.5 * Sum(|Eigenvalues|)
+        dist = 0.5 * np.sum(np.abs(eigvals))
+        distances.append(dist)
+
+    return np.mean(distances)
