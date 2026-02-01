@@ -24,3 +24,24 @@ While `pickle` is excellent for Python objects, we would switch to **HDF5** (Hie
 - **Independent Variable:** Model Depth (Layers: 1, 5, 10, 20)
 - **Dependent Variables:** Mean Fidelity, Runtime (s)
 - **Control:** Fixed Qubit count (N=4)
+
+## 3. Findings & Future Work
+
+### Results Summary
+
+- **Scalability:** As expected for an untrained model, fidelity dropped exponentially ($1/2^N$) as qubits increased. Runtime scaled with statevector size ($2^N$), remaining efficient for $N < 12$.
+- **Ablation:** Increasing model depth (layers 1 to 50) did **not** improve fidelity for random initialization, confirming our hypothesis. It only added slight computational overhead.
+
+### Next Steps
+
+1.  **Optimization:** Implement Gradient Descent to train the parameters, which should raise fidelity towards 1.0.
+2.  **Classical Shadows:** For $N > 20$, we would replace full statevector storage with Classical Shadows to reduce memory usage.
+
+### How to Load Models
+
+A checkpoint is provided in `models/`. Use the helper function to load it:
+
+```python
+from Assignment_3 import load_pickle
+model_data = load_pickle("models/model_finalmodel_4qubits.pkl")
+```
