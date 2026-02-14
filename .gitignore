@@ -5,8 +5,8 @@ venv/
 *__pycache__
 
 # Ignore the quantum measurement data generated in Task 3
-Assignment_1/data/
-Assignment_2/data/
+Task1/data/
+Task2/data/
 
-Assignment_3/models/test_checkpoint.pkl
-Assignment_3/models/model_finalmodel_4qubits.pkl
+Task3/models/test_checkpoint.pkl
+Task3/models/model_finalmodel_4qubits.pkl
